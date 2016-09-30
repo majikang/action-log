@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrateActionLogTable extends Migration
+class CreateActionLogTable extends Migration
 {
     /**
      * Run the migrations.

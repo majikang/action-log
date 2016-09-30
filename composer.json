@@ -1,0 +1,22 @@
+{
+  "name": "majikang/action-log",
+  "description": "A laravel package of ActionLog，记录用户操作和api请求",
+
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "majikang",
+      "email": "10307440@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "majikang\\ActionLog\\": "src/"
+    }
+  }
+ 
+}

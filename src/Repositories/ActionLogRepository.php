@@ -56,14 +56,20 @@ class ActionLogRepository {
             $actionLog->uid=0;
             $actionLog->username ="访客";
         }
+
          //请求操作类型
         $actionLog->type = $type;
         //系统版本
         $actionLog->system = clientService::getPlatForm($_SERVER['HTTP_USER_AGENT'],true);
         //请求的ip
         $actionLog->ip = request()->getClientIp();
+        if( clientService::getRegionFromIp( request()->getClientIp() ) ){
+            $region=clientService::getRegionFromIp( request()->getClientIp() );
+        }else{
+            $region='';
+        }
         //请求的ip
-        $actionLog->region = clientService::getRegionFromIp(request()->getClientIp());
+        $actionLog->region = $region;
         //请求url
         $actionLog->url = request()->getRequestUri();
         //请求内容
@@ -79,7 +85,7 @@ class ActionLogRepository {
         $actionLog->TermID = request()->TermID;
 
         //请求结果
-        $actionLog->result = request()->result;
+        $actionLog->result = $result;
         $res = $actionLog->save();
 
         return $res;

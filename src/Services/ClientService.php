@@ -217,10 +217,11 @@ class clientService
      * @param string $ip
      * @return json
      */
-    public static function getRegionFromIp($ip = ''){  
+    public static function getRegionFromIp($ip = ''){
         if(empty($ip)){  
             $ip = self::getIp();  
-        }  
+        }
+        $ip=(string)$ip;
         $res = @file_get_contents('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip=' . $ip);  
         if(empty($res)){ return false; }  
         $jsonMatches = array();  
@@ -232,15 +233,28 @@ class clientService
             unset($json['ret']);  
         }else{  
             return false;  
-        }  
-        return $json;  
+        }
+        $result='';
+        if($json['country']){
+            $result=$json['country'];
+            if($json['province']){
+                $result=$result.'-'.$json['province'];
+                if($json['city']){
+                    $result=$result.'-'.$json['city'];
+                    if($json['district']){
+                        $result=$result.'-'.$json['district'];
+                    }
+                }
+            }
+        }
+        return $result;
     }  
 
     /**
      * 获取真实ip
      * @return string
      */
-    protected static function getIp(){  
+    public static function getIp(){
         $realip = '';  
         $unknown = 'unknown';  
         if (isset($_SERVER)){  

@@ -217,7 +217,7 @@ class clientService
      * @param string $ip
      * @return json
      */
-    protected static function getRegionFromIp($ip = ''){  
+    public static function getRegionFromIp($ip = ''){  
         if(empty($ip)){  
             $ip = self::getIp();  
         }  

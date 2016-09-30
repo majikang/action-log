@@ -2,7 +2,7 @@
 namespace majikang\ActionLog\Repositories;
 
 use majikang\ActionLog\Services\clientService;
-class ApiLogRepository {
+class ActionLogRepository {
 
 
     /**

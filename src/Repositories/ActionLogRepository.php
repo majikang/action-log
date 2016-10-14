@@ -28,8 +28,13 @@ class ActionLogRepository {
         $actionLog->system = clientService::getPlatForm($_SERVER['HTTP_USER_AGENT'],true);
         //请求的ip
         $actionLog->ip = request()->getClientIp();
+
+        $actionLog->ip = request()->getClientIp();
         //请求的ip
-        $actionLog->region = clientService::getRegionFromIp(request()->getClientIp());
+        $region=clientService::getRegionFromIp(request()->getClientIp());
+        $actionLog->country = $region['country'] ? $region['country'] : '';
+        $actionLog->province = $region['province'] ? $region['province'] : '';
+        $actionLog->city = $region['city'] ? $region['city'] : '';
         //请求url
         $actionLog->url = request()->getRequestUri();
         //请求内容
@@ -63,13 +68,11 @@ class ActionLogRepository {
         $actionLog->system = clientService::getPlatForm($_SERVER['HTTP_USER_AGENT'],true);
         //请求的ip
         $actionLog->ip = request()->getClientIp();
-        if( clientService::getRegionFromIp( request()->getClientIp() ) ){
-            $region=clientService::getRegionFromIp( request()->getClientIp() );
-        }else{
-            $region='';
-        }
         //请求的ip
-        $actionLog->region = $region;
+        $region=clientService::getRegionFromIp(request()->getClientIp());
+        $actionLog->country = $region['country'] ? $region['country'] : '';
+        $actionLog->province = $region['province'] ? $region['province'] : '';
+        $actionLog->city = $region['city'] ? $region['city'] : '';
         //请求url
         $actionLog->url = request()->getRequestUri();
         //请求内容

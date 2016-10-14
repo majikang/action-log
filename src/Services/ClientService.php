@@ -234,16 +234,13 @@ class clientService
         }else{  
             return false;  
         }
-        $result='';
+        $result=array();
         if($json['country']){
-            $result=$json['country'];
+            $result['country']=$json['country'];
             if($json['province']){
-                $result=$result.'-'.$json['province'];
+                $result['province']=$json['province'];
                 if($json['city']){
-                    $result=$result.'-'.$json['city'];
-                    if($json['district']){
-                        $result=$result.'-'.$json['district'];
-                    }
+                    $result['city']=$json['city'];
                 }
             }
         }

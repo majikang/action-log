@@ -33,8 +33,8 @@ class ActionLogServiceProvider extends ServiceProvider
                     ActionLog::createActionLog('update', "更新的id:" . $data->id);
                 });
 
-                $v::saved(function ($data) {
-                    ActionLog::createActionLog('add', "添加的id:" . $data->id);
+                $v::created(function ($data) {
+                    ActionLog::createActionLog('add', "新建的id:" . $data->id);
                 });
 
                 $v::deleted(function ($data) {
